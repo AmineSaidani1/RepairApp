@@ -43,7 +43,6 @@ public class Service {
         this.description = description;
     }
 
-    public pay(){
 
 
     }
