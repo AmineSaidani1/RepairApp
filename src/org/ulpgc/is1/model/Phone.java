@@ -1,6 +1,6 @@
 package org.ulpgc.is1.model;
 
-public enum Phone {
+public class Phone {
     private String number;
 
     public Phone(String number) {
