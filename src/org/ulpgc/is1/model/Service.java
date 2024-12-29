@@ -1,4 +1,5 @@
 package org.ulpgc.is1.model;
+import java.util.Date;
 
 public class Service {
 
@@ -43,7 +44,10 @@ public class Service {
         this.description = description;
     }
 
-
+    public Payment pay(Date date,int amount) {
+        payment = new Payment(date, amount);
+        return payment;
+    }
 
     }
 }
