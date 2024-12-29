@@ -5,7 +5,7 @@ import java.util.*;
 public class ServiceManager {
     private List<Customer> customers;
     private List<Device> devices;
-    private List<Employee> technicians;
+    private List<Employee> Employees;
 
     public void addCustomer(Customer customer) {
         if (customers == null) {
@@ -19,11 +19,12 @@ public class ServiceManager {
         }
     }
     public Customer getCustomer(int id) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getId() == id) {
-                return customers.get(i);
+        for (Customer customer : customers) {
+            if (customer.getId() == id) {
+                return customer;
             }
         }
+        System.out.println("Customer does not exist");
         return null;
     }
 
@@ -39,48 +40,55 @@ public class ServiceManager {
         }
     }
     public Device getDevice(String serialNumber) {
-        for (int i = 0; i < devices.size(); i++) {
-            if (devices.get(i).getSerialNumber().equals(serialNumber)) {
-                return devices.get(i);
+        for (Device device : devices) {
+            if (device.getSerialNumber().equals(serialNumber)) {
+                return device;
             }
         }
+        System.out.println("Device does not exist");
         return null;
     }
     public void addTechnician(Employee employee) {
-        if (technicians == null) {
-            technicians = new ArrayList<>();
+        if (Employees == null) {
+            Employees = new ArrayList<>();
         }
-        if (!technicians.contains(employee)) {
-            technicians.add(employee);
+        if (!Employees.contains(employee)) {
+            Employees.add(employee);
         }
         else {
             System.out.println("Employee already exists");
         }
     }
     public Employee getTechnician(int number) {
-        for (int i = 0; i < technicians.size(); i++) {
-            if (technicians.get(i).getNumber() == number) {
-                return technicians.get(i);
+        for (Employee employee : Employees) {
+            if (employee.getNumber() == number) {
+                return employee;
             }
         }
+        System.out.println("Employee does not exist");
         return null;
     }
-    public void service() {
 
+    public void service(Service service, String SeialNumber) {
+        for (Device device : devices) {
+            if (device.getSerialNumber().equals(SeialNumber)) {
+                device.addDeviceService(service);
+                return;
+            }
+        }
     }
 
-    public void payService() {
+    public void payService(Service service, Payment payment) {
 
     }
 
     public List<Service> getDeviceServiceList(String serialNumber) {
-        List<Service> s = getDevice(serialNumber).deviceServices;
-        if (s == null) {
-            System.out.println("No device services found");
-            return null;
+        for (Device device : devices) {
+            if (device.getSerialNumber().equals(serialNumber)) {
+                return device.getDeviceServices();
+            }
         }
-        return s;
+        System.out.println("Device not found");
+        return null;
     }
-
-
 }
