@@ -20,6 +20,7 @@ public class Phone {
         return number != null && number.matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}");
     }
 
+
     @Override
     public String toString() {
         return number;
