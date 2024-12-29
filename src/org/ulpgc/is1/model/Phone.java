@@ -15,7 +15,7 @@ public class Phone {
         return number;
     }
 
-    public boolean isValid() {
+    private boolean isValid() {
         // Valida un número español (+34, opcional) y mira si el nº empieza por 6 o 7 y tiene 9 números.
         return number != null && number.matches("(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}");
     }
