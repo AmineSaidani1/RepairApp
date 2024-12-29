@@ -5,7 +5,7 @@ public class Customer {
     public String name;
     public String surname;
     public Phone phone;
-    public List<Device> customerDevices;
+    private List<Device> customerDevices;
 
     public Customer(String name, String surname, Phone phone, int id) {
         this.name = name;
