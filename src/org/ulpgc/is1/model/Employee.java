@@ -1,9 +1,9 @@
 package org.ulpgc.is1.model;
 
 public class Employee {
-    public final int number;
-    public String name;
-    public String surname;
+    private final int number;
+    private String name;
+    private String surname;
 
     public Employee(int number, String name, String surname) {
         this.number = number;
@@ -14,5 +14,11 @@ public class Employee {
     public int getNumber() {
         return number;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getSurname() { return surname; }
 
 }

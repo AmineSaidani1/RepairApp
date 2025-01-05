@@ -4,7 +4,7 @@ import java.util.*;
 public class ServiceManager {
     private List<Customer> customers = new ArrayList<>();
     private List<Device> devices = new ArrayList<>();
-    private List<Employee> Employees = new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
     public void addCustomer(String name, String surname, Phone phone) {
         Customer customer = new Customer(name, surname, phone);
@@ -18,7 +18,7 @@ public class ServiceManager {
 
     public Customer getCustomer(Phone phone) {
         for (Customer customer : customers) {
-            if (customer.getPhone().equals(phone)) {
+            if (customer.getPhone() == phone) {
                 return customer;
             }
         }
@@ -44,19 +44,18 @@ public class ServiceManager {
         System.out.println("Device does not exist");
         return null;
     }
-    public void addTechnician(Employee employee) {
-        if (Employees == null) {
-            Employees = new ArrayList<>();
-        }
-        if (!Employees.contains(employee)) {
-            Employees.add(employee);
+
+    public void addTechnician(int number, String name, String surname) {
+        Employee employee = new Employee(number, name, surname);
+        if (!employees.contains(employee)) {
+            employees.add(employee);
         }
         else {
             System.out.println("Employee already exists");
         }
     }
     public Employee getTechnician(int number) {
-        for (Employee employee : Employees) {
+        for (Employee employee : employees) {
             if (employee.getNumber() == number) {
                 return employee;
             }
