@@ -3,14 +3,12 @@ package org.ulpgc.is1.model;
 import java.util.*;
 
 public class ServiceManager {
-    private List<Customer> customers;
+    private List<Customer> customers = new ArrayList<>();
     private List<Device> devices;
     private List<Employee> Employees;
 
-    public void addCustomer(Customer customer) {
-        if (customers == null) {
-            customers = new ArrayList<>();
-        }
+    public void addCustomer(String name, String surname, Phone phone) {
+        Customer customer = new Customer(name, surname, phone);
         if (!customers.contains(customer)) {
             customers.add(customer);
         }
@@ -18,10 +16,14 @@ public class ServiceManager {
             System.out.println("Customer already exists");
         }
     }
-    public Customer getCustomer(int id) {
+
+    public Customer getCustomer(String name, String surname, Phone phone) {
+        Customer customerAc = new Customer(name, surname, phone);
         for (Customer customer : customers) {
-            if (customer.getId() == id) {
+            if (customer.getPhone() == customerAc.getPhone()) {
                 return customer;
+                // uso el movil porque customer no tiene id y un nombre se puede repetir,
+                // pero un teléfono no.
             }
         }
         System.out.println("Customer does not exist");
