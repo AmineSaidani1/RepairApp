@@ -1,5 +1,6 @@
 package org.ulpgc.is1.model;
 import java.util.*;
+
 public class Customer {
     private String name;
     private String surname;
