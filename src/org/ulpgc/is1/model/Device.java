@@ -5,7 +5,7 @@ public class Device {
     private String serialNumber;
     private DeviceType type;
     private Customer owner;
-    private List<Service> deviceServices;
+    private List<Service> deviceServices = new ArrayList<>();
 
     public Device(String serialNumber, DeviceType deviceType, Customer owner) {
         this.serialNumber = serialNumber;
@@ -17,15 +17,17 @@ public class Device {
 
     public DeviceType getType() {return type;}
 
-    protected void addDeviceService(Service service) {
-        if (deviceServices == null) {
-            deviceServices = new ArrayList<>();
-        }
-        deviceServices.add(service);
-    }
-    protected List<Service> getDeviceServices() {
-        return deviceServices;
-    }
+    public Customer getOwner() {return owner;}
 
+    public void addDeviceService(Service service) {deviceServices.add(service);}
 
+    public List<Service> getDeviceServices() {return deviceServices;}
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("*) Datos del dispositivo:\n");
+        sb.append("   |- Serial Number: ").append(serialNumber).append("\n");
+        sb.append("   |- Tipo: ").append(type);
+        return sb.toString();
+    }
 }
