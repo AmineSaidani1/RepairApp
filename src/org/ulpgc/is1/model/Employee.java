@@ -21,4 +21,9 @@ public class Employee {
 
     public String getSurname() { return surname; }
 
+    public void setSurname(String surname) { this.surname = surname; }
+
+    @Override
+    public String toString() {return "Técnico =" + name + " " + surname + ", concepto =" + surname + "]";}
 }
+
