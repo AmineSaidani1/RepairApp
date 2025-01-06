@@ -1,18 +1,20 @@
 package org.ulpgc.is1.model;
-
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Payment {
-
-    private Date date;
-
+    private LocalDate date;
     private int amount;
 
-    public Date getDate() {
+    public Payment(LocalDate date, int amount) {
+        this.date = date;
+        this.amount = amount;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -24,8 +26,9 @@ public class Payment {
         this.amount = amount;
     }
 
-    public Payment(Date date, int amount) {
-        this.date = date;
-        this.amount = amount;
+    @Override
+    public String toString() {
+        return "Pago {fecha del pago = " + date + ", cantidad = " + amount + " euros}";
     }
+
 }
