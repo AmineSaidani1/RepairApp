@@ -12,7 +12,6 @@ public class ServiceManager {
         Customer customer = new Customer(name, surname, phone);
         if (!customers.contains(customer)) {
             customers.add(customer);
-            System.out.println("Cliente agregado: " + customer.getName() + " " + customer.getSurname());
         }
         else {
             System.out.println("Customer already exists");

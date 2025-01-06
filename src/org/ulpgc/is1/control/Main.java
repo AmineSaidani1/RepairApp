@@ -36,10 +36,6 @@ public class Main {
             Service service = services.get(0);
             manager.payService(service, LocalDate.of(2024, 12, 22), 100);
 
-            // Añadir Tareas
-            manager.addWorkToService("1234-5678", 1, 2, "Desmontaje");
-            manager.addWorkToService("1234-5678", 2, 5, "Reparación y montaje");
-
             // Imprimir Información
             System.out.println("***********************************************************");
             System.out.println(service.getDevice().getOwner());
@@ -53,6 +49,10 @@ public class Main {
             System.out.println("--------------------------------------------------------------");
             System.out.println("Tareas realizadas en el servicio");
             System.out.println("--------------------------------------------------------------");
+
+            // Añadir Tareas
+            manager.addWorkToService("1234-5678", 1, 2, "Desmontaje");
+            manager.addWorkToService("1234-5678", 2, 5, "Reparación y montaje");
         } else {
             System.out.println("No se encontraron servicios para el dispositivo.");
         }
