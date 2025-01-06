@@ -1,4 +1,5 @@
 package org.ulpgc.is1.model;
+import java.time.LocalDate;
 import java.util.*;
 
 public class ServiceManager {
@@ -68,8 +69,8 @@ public class ServiceManager {
         System.out.println("The service ID " + service.getId() + " has been registred.");
     }
 
-    public void payService(Service service, Payment payment) {
-        service.pay(payment);
+    public void payService(Service service, LocalDate date, int amount) {
+        service.pay(date, amount);
     }
 
     public List<Service> getDeviceServiceList(String serialNumber) {

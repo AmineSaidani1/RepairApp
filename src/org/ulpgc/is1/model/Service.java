@@ -1,89 +1,74 @@
 package org.ulpgc.is1.model;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Service {
-
-    // Atributos de la clase
     private static int NEXT_ID = 0;
     private final int id;
     private ServiceType type;
     private String description;
-
-    // Atributos de las relaciones
-    private Device device;
-    private Budget budget;
     private Payment payment;
+    private Budget budget;
+    private Device device;
     private List<Employee> technicians;
 
-    public Service(ServiceType type, String description, Device device, Budget budget) {
+    public Service(ServiceType type, String description, Device device, LocalDate date, int amount, List<Employee> manager) {
+        this.budget = new Budget(date, amount, manager);
         this.id = ++NEXT_ID;
         this.type = type;
         this.description = description;
         this.device = device;
-        this.budget = budget;
         this.payment = null; // No hay pago al principio
         this.technicians = new ArrayList<>();
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 
-    public ServiceType getType() {
-        return type;
-    }
+    public ServiceType getType() {return type;}
 
-    public void setType(ServiceType type) {
-        this.type = type;
-    }
+    public void setType(ServiceType type) {this.type = type;}
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() {return description;}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) {this.description = description;}
 
-    public Device getDevice() {
-        return device;
-    }
+    public Device getDevice() {return device;}
 
-    public Budget getBudget() {
-        return budget;
-    }
+    public void setDevice(Device device) {this.device = device;}
 
-    public Payment getPayment() {
-        return payment;
-    }
+    public Budget getBudget() {return budget;}
 
-    public List<Employee> getTechnicians() {
-        return technicians;
-    }
+    public void setBudget(Budget budget) {this.budget = budget;}
 
-    public void addTechnicians(Employee technician) {
+    public Payment getPayment() {return payment;}
+
+    public List<Employee> getTechnicians() {return technicians;}
+
+    public void addTechnicians(int number, String name, String surname) {
+        Employee technician = new Employee(number, name, surname);
         if (!technicians.contains(technician)) {
             technicians.add(technician);
         }
+        System.out.println("Technician is already working in this service.");
     }
 
-    public void pay(Payment payment) {
-        if (this.payment == null) {
-            this.payment = payment;
-            System.out.println("El servicio ha sido pagado correctamente");
-        } else {
-            System.out.println("El servicio ha sido pagado anteriormente.");
+    public void pay(LocalDate date, int amount) {
+        Payment payment = new Payment(date, amount);
+        if (payment.getAmount() < budget.getAmount()) {
+            System.out.println("Payment < Budget");
+            return;
         }
+        this.payment = payment;
+        System.out.println("Successful payment for the service " + id + ".");
     }
-
-    //por si lo llegamos necesitar
-    //public boolean isPaid() {
-    //    return this.payment != null;
-    //}
 
     @Override
     public String toString() {
-        return ""; //modificar
+        StringBuilder sb = new StringBuilder("*) Datos del servicio:\n");
+        sb.append("   |- Ref.: ").append(id).append("\n");
+        sb.append("   |- Descripción: ").append(description).append("\n");
+        sb.append("   |- Tipo: ").append(type).append("\n");
+        sb.append("   |- Información del pago: ").append(payment);
+        return sb.toString();
     }
 }
