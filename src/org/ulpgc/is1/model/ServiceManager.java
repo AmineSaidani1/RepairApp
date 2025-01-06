@@ -12,6 +12,7 @@ public class ServiceManager {
         Customer customer = new Customer(name, surname, phone);
         if (!customers.contains(customer)) {
             customers.add(customer);
+            System.out.println("Cliente agregado: " + customer.getName() + " " + customer.getSurname());
         }
         else {
             System.out.println("Customer already exists");
@@ -93,7 +94,33 @@ public class ServiceManager {
                 managers.add(manager);
             }
         }
-        service(type, description, serialNumber, deviceType, customer.getName(), customer.getSurname(), customer.getPhone(), budgetDate, budgetAmount, managers);
+        Service service = new Service(type,
+                description,
+                serialNumber,
+                deviceType,
+                customer.getName(),
+                customer.getSurname(),
+                customer.getPhone(),
+                budgetDate,
+                budgetAmount,
+                managers);
+        device.getDeviceServices().add(service);
+    }
+
+    public void addWorkToService(String serialNumber, int technicianId, int timeSpent, String description) {
+        List<Service> services = getDeviceServiceList(serialNumber);
+        if (services != null && !services.isEmpty()) {
+            Service service = services.get(0);
+            Employee technician = getTechnician(technicianId);
+            if (technician != null) {
+                Work task = new Work(service, technician, timeSpent, description);
+                System.out.println(task);
+            } else {
+                System.out.println("Technician not found.");
+            }
+        } else {
+            System.out.println("No service found for the given serial number.");
+        }
     }
 
     public void payService(Service service, LocalDate date, int amount) {
