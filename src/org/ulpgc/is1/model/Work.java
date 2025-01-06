@@ -4,44 +4,33 @@ public class Work {
     private int timeSpent;
     private String description;
     private Service service;
-    private Employee employee;
+    private Employee technician;
 
-    public Work(Service service, Employee employee, int timeSpent, String description) {
+    public Work(Service service, Employee technician, int timeSpent, String description) {
         this.description = description;
         this.timeSpent = timeSpent;
         this.service = service;
-        this.employee = employee;
+        this.technician = technician;
     }
 
-    public int getTimeSpent() {
-        return timeSpent;
-    }
+    public int getTimeSpent() {return timeSpent;}
 
-    public void setTimeSpent(int timeSpent) {
-        this.timeSpent = timeSpent;
-    }
+    public void setTimeSpent(int timeSpent) {this.timeSpent = timeSpent;}
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() {return description;}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) {this.description = description;}
 
-    public Service getService() {
-        return service;
-    }
+    public Service getService() {return service;}
 
-    public void setService(Service service) {
-        this.service = service;
-    }
+    public void setService(Service service) {this.service = service;}
 
-    public Employee getEmployee() {
-        return employee;
-    }
+    public Employee getTechnician() {return technician;}
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setTechnician(Employee technician) {this.technician = technician;}
+
+    @Override
+    public String toString() {
+        return "Tarea { técnico = " + technician + ", concepto = '" + description + "', tiempo invertido = " + timeSpent + "}";
     }
 }
