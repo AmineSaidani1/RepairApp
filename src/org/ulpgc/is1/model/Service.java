@@ -12,12 +12,13 @@ public class Service {
     private Device device;
     private List<Employee> technicians;
 
-    public Service(ServiceType type, String description, Device device, LocalDate date, int amount, List<Employee> manager) {
+    public Service(ServiceType type, String description, String serialNumber, DeviceType deviceType, String name, String surname, Phone phone, LocalDate date, int amount, List<Employee> manager) {
         this.budget = new Budget(date, amount, manager);
+        Customer owner = new Customer(name, surname, phone);
+        this.device = new Device(serialNumber, deviceType, owner);
         this.id = ++NEXT_ID;
         this.type = type;
         this.description = description;
-        this.device = device;
         this.payment = null; // No hay pago al principio
         this.technicians = new ArrayList<>();
     }
