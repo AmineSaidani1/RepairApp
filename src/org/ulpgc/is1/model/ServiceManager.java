@@ -65,7 +65,8 @@ public class ServiceManager {
         return null;
     }
 
-    public void service(Service service) {
+    public void service(ServiceType type, String description, String serialNumber, DeviceType deviceType, String name, String surname, Phone phone, LocalDate date, int amount, List<Employee> manager) {
+        Service service = new Service(type, description, serialNumber, deviceType, name, surname, phone, date, amount, manager);
         System.out.println("The service ID " + service.getId() + " has been registred.");
     }
 
