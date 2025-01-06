@@ -7,7 +7,8 @@ public class ServiceManager {
     private List<Device> devices = new ArrayList<>();
     private List<Employee> employees = new ArrayList<>();
 
-    public void addCustomer(String name, String surname, Phone phone) {
+    public void addCustomer(String name, String surname, String phoneNumber) {
+        Phone phone = new Phone(phoneNumber);
         Customer customer = new Customer(name, surname, phone);
         if (!customers.contains(customer)) {
             customers.add(customer);
@@ -27,7 +28,8 @@ public class ServiceManager {
         return null;
     }
 
-    public void addDevice(String serialNumber, DeviceType deviceType, Customer owner) {
+    public void addDevice(String serialNumber, DeviceType deviceType, String phoneNumber) {
+        Customer owner = getCustomer(new Phone(phoneNumber));
         Device device = new Device(serialNumber, deviceType, owner);
         if (!devices.contains(device)) {
             devices.add(device);
@@ -36,6 +38,7 @@ public class ServiceManager {
             System.out.println("Device already exists");
         }
     }
+
     public Device getDevice(String serialNumber) {
         for (Device device : devices) {
             if (device.getSerialNumber().equals(serialNumber)) {
@@ -65,9 +68,32 @@ public class ServiceManager {
         return null;
     }
 
-    public void service(ServiceType type, String description, String serialNumber, DeviceType deviceType, String name, String surname, Phone phone, LocalDate date, int amount, List<Employee> manager) {
-        Service service = new Service(type, description, serialNumber, deviceType, name, surname, phone, date, amount, manager);
-        System.out.println("The service ID " + service.getId() + " has been registred.");
+    public void service(ServiceType type,
+                        String description,
+                        String serialNumber,
+                        DeviceType deviceType,
+                        String customerPhone,
+                        LocalDate budgetDate,
+                        int budgetAmount,
+                        List<Integer> managerIds) {
+        Customer customer = getCustomer(new Phone(customerPhone));
+        if (customer == null) {
+            System.out.println("Customer not found. Cannot create service.");
+            return;
+        }
+        Device device = getDevice(serialNumber);
+        if (device == null) {
+            System.out.println("Device not found. Cannot create service.");
+            return;
+        }
+        List<Employee> managers = new ArrayList<>();
+        for (int id : managerIds) {
+            Employee manager = getTechnician(id);
+            if (manager != null) {
+                managers.add(manager);
+            }
+        }
+        service(type, description, serialNumber, deviceType, customer.getName(), customer.getSurname(), customer.getPhone(), budgetDate, budgetAmount, managers);
     }
 
     public void payService(Service service, LocalDate date, int amount) {

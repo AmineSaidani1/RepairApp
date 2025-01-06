@@ -49,8 +49,8 @@ public class Service {
         Employee technician = new Employee(number, name, surname);
         if (!technicians.contains(technician)) {
             technicians.add(technician);
-        }
-        System.out.println("Technician is already working in this service.");
+        } else {
+        System.out.println("Technician is already working in this service.");}
     }
 
     public void pay(LocalDate date, int amount) {
@@ -60,7 +60,6 @@ public class Service {
             return;
         }
         this.payment = payment;
-        System.out.println("Successful payment for the service " + id + ".");
     }
 
     @Override
