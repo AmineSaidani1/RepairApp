@@ -18,7 +18,7 @@ public class ServiceManager {
 
     public Customer getCustomer(Phone phone) {
         for (Customer customer : customers) {
-            if (customer.getPhone() == phone) {
+            if (customer.getPhone().equals(phone)) {
                 return customer;
             }
         }
@@ -64,17 +64,12 @@ public class ServiceManager {
         return null;
     }
 
-    public void service(Service service, String SeialNumber) {
-        for (Device device : devices) {
-            if (device.getSerialNumber().equals(SeialNumber)) {
-                device.addDeviceService(service);
-                return;
-            }
-        }
+    public void service(Service service) {
+        System.out.println("The service ID " + service.getId() + " has been registred.");
     }
 
     public void payService(Service service, Payment payment) {
-
+        service.pay(payment);
     }
 
     public List<Service> getDeviceServiceList(String serialNumber) {
