@@ -10,12 +10,13 @@ public class ServiceManager {
     public void addCustomer(String name, String surname, String phoneNumber) {
         Phone phone = new Phone(phoneNumber);
         Customer customer = new Customer(name, surname, phone);
-        if (!customers.contains(customer)) {
-            customers.add(customer);
+        for (Customer c : customers) {
+            if (c.getPhone().equals(phone)) {
+                System.out.println("Customer already exists");
+                return;
+            }
         }
-        else {
-            System.out.println("Customer already exists");
-        }
+        customers.add(customer);
     }
 
     public Customer getCustomer(Phone phone) {
@@ -31,12 +32,13 @@ public class ServiceManager {
     public void addDevice(String serialNumber, DeviceType deviceType, String phoneNumber) {
         Customer owner = getCustomer(new Phone(phoneNumber));
         Device device = new Device(serialNumber, deviceType, owner);
-        if (!devices.contains(device)) {
-            devices.add(device);
+        for (Device d : devices) {
+            if (d.getSerialNumber().equals(serialNumber)) {
+                System.out.println("Device already exists");
+                return;
+            }
         }
-        else {
-            System.out.println("Device already exists");
-        }
+        devices.add(device);
     }
 
     public Device getDevice(String serialNumber) {
@@ -51,12 +53,13 @@ public class ServiceManager {
 
     public void addTechnician(int number, String name, String surname) {
         Employee employee = new Employee(number, name, surname);
-        if (!employees.contains(employee)) {
-            employees.add(employee);
+        for (Employee e : employees) {
+            if(e.getNumber() == number) {
+                System.out.println("Employee already exists");
+                return;
+            }
         }
-        else {
-            System.out.println("Employee already exists");
-        }
+        employees.add(employee);
     }
     public Employee getTechnician(int number) {
         for (Employee employee : employees) {
