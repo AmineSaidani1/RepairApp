@@ -9,7 +9,7 @@ public class Main {
         ServiceManager manager = new ServiceManager();
 
         // Se añaden los dos clientes
-        manager.addCustomer("Antonio", "García González", "628112233");
+        manager.addCustomer("Pepito", "García González", "628112233");
         manager.addCustomer("Roberto", "Emilio Hernandez", "661112714");
 
         // Se crean tres dispositivos, los dos primeros para el primer cliente
@@ -18,7 +18,7 @@ public class Main {
         manager.addDevice("1234-5678", DeviceType.Tablet, "661112714");
 
         // Se crean los dos empleados
-        manager.addTechnician(1, "Antonio", "García González");
+        manager.addTechnician(1, "Pepote", "García González");
         manager.addTechnician(2, "José", "Rodríguez Pérez");
 
         // Se crea el servicio
