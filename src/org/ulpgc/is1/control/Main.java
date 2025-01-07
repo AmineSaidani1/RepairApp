@@ -8,31 +8,29 @@ public class Main {
     public static void main(String[] args) {
         ServiceManager manager = new ServiceManager();
 
-        // Añadir Cliente
+        // Se añaden los dos clientes
         manager.addCustomer("Antonio", "García González", "628112233");
         manager.addCustomer("Roberto", "Emilio Hernandez", "661112714");
 
-        // Añadir Dispositivo
+        // Se crean tres dispositivos, los dos primeros para el primer cliente
         manager.addDevice("1234-5677", DeviceType.Smartphone, "628112233");
         manager.addDevice("1234-5679", DeviceType.Laptop, "628112233");
         manager.addDevice("1234-5678", DeviceType.Tablet, "661112714");
 
-        // Añadir Técnicos
+        // Se crean los dos empleados
         manager.addTechnician(1, "Antonio", "García González");
         manager.addTechnician(2, "José", "Rodríguez Pérez");
 
-
-
-        // Crear Servicio
+        // Se crea el servicio
         manager.service(
                 ServiceType.Repair,
                 "Arreglo del portátil",
                 "1234-5679",
-                DeviceType.Tablet,
+                DeviceType.Laptop,
                 "628112233",
                 LocalDate.of(2024, 12, 22),
                 100,
-                Arrays.asList(2) // José Rodríguez Pérez como gestor
+                Arrays.asList(2)
         );
 
         // Realizar Pago
